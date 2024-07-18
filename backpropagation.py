@@ -21,9 +21,7 @@ class Value:
         other = (
             other
             if isinstance(other, Value)
-            else Value(
-                other, label=f"number summed to {self.label}"
-            )
+            else Value(other, label=f"number summed to {self.label}")
         )
         sum = Value(self.data + other.data, label="+")
         sum.children.add(self)
@@ -40,9 +38,7 @@ class Value:
         other = (
             other
             if isinstance(other, Value)
-            else Value(
-                other, label=f"number multiplied to {self.label}"
-            )
+            else Value(other, label=f"number multiplied to {self.label}")
         )
         mul = Value(self.data * other.data, label="*")
         mul.children.add(self)
