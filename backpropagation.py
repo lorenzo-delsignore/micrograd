@@ -8,7 +8,7 @@ class Value:
     def __init__(
         self,
         data,
-        label,
+        label="",
         children=(),
     ):
         self.data = data
