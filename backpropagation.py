@@ -98,6 +98,16 @@ class Value:
         out._backward = _backward
         return out
 
+    def relu(self):
+        out = Value(max(0, self.data), label="relu")
+        out.children.add(self)
+
+        def _backward():
+            self.grad += (self.data > 0) * out.grad
+
+        out._backward = _backward
+        return out
+
     def backward(self):
         topo = []
         visited = set()
@@ -156,6 +166,6 @@ if __name__ == "__main__":
     x2w2 = x2 * w2
     x1w1x2w2 = x1w1 + x2w2
     n = x1w1x2w2 + b
-    o = n.tanh()
+    o = n.relu()
     o.backward()
     o.print_graph()
