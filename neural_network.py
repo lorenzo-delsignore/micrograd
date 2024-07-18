@@ -41,7 +41,7 @@ class MLP:
 
 if __name__ == "__main__":
     x = [2.0, 3.0, -1.0]
-    n = MLP(3, [4, 4, 1])
+    n = MLP(3, [2, 1])
     output = n(x)
     output.backward()
     output.print_graph()
