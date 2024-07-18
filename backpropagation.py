@@ -110,7 +110,6 @@ class Value:
                 topo.append(v)
 
         build_topo(self)
-        print(topo)
         self.grad = 1.0
         for v in reversed(topo):
             v._backward()
@@ -140,7 +139,6 @@ class Value:
                         queue.append(child)
                         dot.edge(f"{child_id}", f"{node_id}")
 
-        print(root)
         bfs(root)
         dot.view()
 
