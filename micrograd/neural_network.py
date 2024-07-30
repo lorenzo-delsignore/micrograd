@@ -1,6 +1,6 @@
 import random
 
-from backpropagation import Value
+from micrograd.backpropagation import Value
 
 
 class Neuron:
