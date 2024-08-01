@@ -124,7 +124,7 @@ class Value:
         for v in reversed(topo):
             v._backward()
 
-    def print_graph(self):
+    def print_graph(self, filename="Computational_graph", directory=".", format="pdf"):
         dot = graphviz.Digraph(
             comment="Computational Graph", graph_attr={"rankdir": "LR"}
         )
@@ -150,6 +150,10 @@ class Value:
                         dot.edge(f"{child_id}", f"{node_id}")
 
         bfs(root)
+        output_path = dot.render(
+            filename=filename, directory=directory, format=format, cleanup=True
+        )
+        print(f"Graph saved to: {output_path}")
         dot.view()
 
     def __repr__(self):
