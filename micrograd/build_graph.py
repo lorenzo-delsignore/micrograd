@@ -10,9 +10,11 @@ def main():
     parser.add_argument(
         "--save_dir", "-s", type=str, help="Directory to save the Computational Graph"
     )
-    parser.add_argument("--input", "-i", nargs="+", type=int, help="Input of the MLP")
     parser.add_argument(
-        "--output", "-o", nargs="+", type=int, help="A list of neurons output"
+        "--input", "-i", required=True, nargs="+", type=int, help="Input of the MLP"
+    )
+    parser.add_argument(
+        "--output", "-o", required=True, nargs="+", type=int, help="A list of neurons output"
     )
     parser.add_argument(
         "--activation",
