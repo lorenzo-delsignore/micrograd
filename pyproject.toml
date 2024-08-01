@@ -56,6 +56,5 @@ universal = true
 requires = [
 	"setuptools==69.5.1",
 	"wheel",
-
 ]
 
