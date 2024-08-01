@@ -32,6 +32,9 @@ where = ["."]
 exclude = ["tests"]
 namespaces = false
 
+[project.scripts]
+micrograd = "micrograd.build_graph:main"
+
 [project.optional-dependencies]
 test = [
 	"coverage>=5.0.2",
