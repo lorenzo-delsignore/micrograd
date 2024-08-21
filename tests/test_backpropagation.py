@@ -4,6 +4,84 @@ from micrograd.backpropagation import Value
 
 
 @pytest.mark.parametrize(
+    "a, b, output, grad_a, grad_b",
+    [
+        (Value(-3, label="a"), Value(2, label="b"), -1, 1, 1),
+        (Value(4, label="b"), -3, 1, 1, None),
+    ],
+)
+def test_add(a, b, output, grad_a, grad_b):
+    sum = a + b
+    assert sum.data == output
+    sum.backward()
+    assert a.grad == grad_a
+    if isinstance(b, Value):
+        assert b.grad == grad_b
+
+
+@pytest.mark.parametrize(
+    "a, b, output, grad_a, grad_b",
+    [
+        (Value(-3, label="a"), Value(2, label="b"), -5, 1, -1),
+        (Value(4, label="b"), -3, 7, 1, None),
+    ],
+)
+def test_sub(a, b, output, grad_a, grad_b):
+    sub = a - b
+    assert sub.data == output
+    sub.backward()
+    assert a.grad == grad_a
+    if isinstance(b, Value):
+        assert b.grad == grad_b
+
+
+@pytest.mark.parametrize(
+    "a, b, output, grad_a, grad_b",
+    [
+        (Value(-3, label="a"), Value(2, label="b"), -6, 2, -3),
+        (Value(4, label="b"), -3, -12, -3, None),
+    ],
+)
+def test_mul(a, b, output, grad_a, grad_b):
+    mul = a * b
+    assert mul.data == output
+    mul.backward()
+    assert a.grad == grad_a
+    if isinstance(b, Value):
+        assert b.grad == grad_b
+
+
+@pytest.mark.parametrize(
+    "a, b, output, grad_a, grad_b",
+    [
+        (Value(-3, label="a"), Value(2, label="b"), -1.5, 0.5, 0.75),
+        (Value(4, label="b"), -3, -1.3333333333333333, -0.3333333333333333, None),
+    ],
+)
+def test_div(a, b, output, grad_a, grad_b):
+    div = a / b
+    assert div.data == output
+    div.backward()
+    assert a.grad == grad_a
+    if isinstance(b, Value):
+        assert b.grad == grad_b
+
+
+@pytest.mark.parametrize(
+    "a, b, output, grad_a",
+    [
+        (Value(-3, label="a"), 2, 9, -6),
+        (Value(4, label="b"), 3, 64, 48),
+    ],
+)
+def test_pow(a, b, output, grad_a):
+    pow = a**b
+    assert pow.data == output
+    pow.backward()
+    a.grad == grad_a
+
+
+@pytest.mark.parametrize(
     "input, output, grad",
     [
         (Value(data=2, label="x1"), 2, 1),
