@@ -14,7 +14,12 @@ def main():
         "--input", "-i", required=True, nargs="+", type=float, help="Input of the MLP"
     )
     parser.add_argument(
-        "--output", "-o", required=True, nargs="+", type=int, help="A list of neurons output"
+        "--output",
+        "-o",
+        required=True,
+        nargs="+",
+        type=int,
+        help="A list of neurons output",
     )
     parser.add_argument(
         "--activation",
