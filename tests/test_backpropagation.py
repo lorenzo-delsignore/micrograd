@@ -1,6 +1,7 @@
 import pytest
 
 from micrograd.backpropagation import Value
+from tests.utils import create_values_dict
 
 
 @pytest.mark.parametrize(
@@ -124,3 +125,65 @@ def test_exp(input, output, grad):
     assert exp.data == output
     exp.backward()
     assert input.grad == grad
+
+
+@pytest.mark.parametrize(
+    "x, output, grad",
+    [
+        (Value(data=3, label="x1"), -3, -1),
+        (Value(data=-2, label="x2"), 2, -1),
+    ],
+)
+def test_neg(x, output, grad):
+    z = -x
+    assert z.data == output
+    z.backward()
+    assert x.grad == grad
+
+
+@pytest.mark.parametrize(
+    "x, output, grad",
+    [
+        (Value(data=3, label="x1"), 6, 2),
+        (Value(data=-2, label="x2"), -4, 2),
+    ],
+)
+def test_rmul(x, output, grad):
+    rmul = 2 * x
+    assert rmul.data == output
+    rmul.backward()
+    assert x.grad == grad
+
+
+@pytest.mark.parametrize(
+    "input, expression, output, expected_gradients",
+    [
+        (
+            {
+                "x1": -1,
+                "x2": 4,
+                "x3": 0.5,
+            },
+            lambda x1, x2, x3: (x1 + x2) * x3 + x1**2,
+            2.5,
+            {"x1": 0.5 + 2 * -1, "x2": 0.5, "x3": 3},
+        ),
+        (
+            {
+                "x1": 0.5,
+                "x2": -2,
+                "x3": 3,
+            },
+            lambda x1, x2, x3: (x1 - x2) * x3 + x2**3,
+            -0.5,
+            {"x1": 3, "x2": -3 + 3 * (-2) ** 2, "x3": 0.5 - (-2)},
+        ),
+    ],
+)
+def test_complex_expression(input, expression, output, expected_gradients):
+    values = create_values_dict(input)
+    expr = expression(values["x1"], values["x2"], values["x3"])
+    assert expr.data == output
+    expr.backward()
+    for var, expected_grad in expected_gradients.items():
+        assert values[var].grad == expected_grad
