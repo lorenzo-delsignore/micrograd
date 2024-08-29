@@ -122,7 +122,6 @@ class Value:
         build_topo(self)
         self.grad = 1.0
         for v in reversed(topo):
-            print(v)
             v._backward()
 
     def print_graph(self, filename="Computational_graph", directory=".", format="pdf"):
