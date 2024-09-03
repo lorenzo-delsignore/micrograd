@@ -2,6 +2,7 @@
 name = "micrograd"
 version = "1.0.0"
 description = "Backpropagation from scratch"
+readme = "README.md"
 keywords = []
 classifiers = [
 	"Development Status :: 5 - Production/Stable",
