@@ -1,4 +1,4 @@
-from micrograd.backpropagation import Value
+from smallgrad.backpropagation import Value
 
 
 def create_values_dict(inputs):

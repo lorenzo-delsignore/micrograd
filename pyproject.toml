@@ -1,7 +1,8 @@
 [project]
-name = "micrograd"
-version = "1.0.0"
+name = "smallgrad"
+version = "1.0.1"
 description = "Backpropagation from scratch"
+readme = "README.md"
 keywords = []
 classifiers = [
 	"Development Status :: 5 - Production/Stable",
@@ -23,7 +24,7 @@ author = "Lorenzo Del Signore"
 author_email = "xelithras94@gmail.com"
 maintainer = "Lorenzo Del Signore"
 maintainer_email = "xelithras94@gmail.com"
-url = "https://github.com/lorenzo-delsignore/micrograd"
+url = "https://github.com/lorenzo-delsignore/smallgrad"
 long_description = { file = "README.md" }
 long_description_content_type = "text/markdown"
 license = { file = "LICENSE" }
@@ -34,7 +35,7 @@ exclude = ["tests"]
 namespaces = false
 
 [project.scripts]
-micrograd = "micrograd.build_graph:main"
+smallgrad = "smallgrad.build_graph:main"
 
 [project.optional-dependencies]
 test = [
@@ -45,7 +46,7 @@ test = [
 ]
 docs = ["mkdocs>=1.0.4"]
 dev = [
-	"micrograd[test, docs]",
+	"smallgrad[test, docs]",
 	"mypy",
 	"tox",
 ]
