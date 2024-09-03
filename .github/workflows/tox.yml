@@ -32,6 +32,3 @@ jobs:
               run: tox -c tox.ini -e check-formatting,lint
             - name: Run Test Suite
               run: tox -c tox.ini -e py312
-
-
-
