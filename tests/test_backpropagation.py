@@ -13,10 +13,7 @@ from tests.utils import create_values_dict
 )
 def test_add(input, output, expected_gradients):
     values = create_values_dict(input)
-    if "b" in expected_gradients:
-        sum = values["a"] + values["b"]
-    else:
-        sum = values["a"] + input["b"]
+    sum = values["a"] + values.get("b", input["b"])
     assert sum.data == output
     sum.backward()
     for var, expected_grad in expected_gradients.items():
@@ -32,10 +29,7 @@ def test_add(input, output, expected_gradients):
 )
 def test_sub(input, output, expected_gradients):
     values = create_values_dict(input)
-    if "b" in expected_gradients:
-        sub = values["a"] - values["b"]
-    else:
-        sub = values["a"] - input["b"]
+    sub = values["a"] - values.get("b", input["b"])
     assert sub.data == output
     sub.backward()
     for var, expected_grad in expected_gradients.items():
@@ -51,10 +45,7 @@ def test_sub(input, output, expected_gradients):
 )
 def test_mul(input, output, expected_gradients):
     values = create_values_dict(input)
-    if "b" in expected_gradients:
-        mul = values["a"] * values["b"]
-    else:
-        mul = values["a"] * input["b"]
+    mul = values["a"] * values.get("b", input["b"])
     assert mul.data == output
     mul.backward()
     for var, expected_grad in expected_gradients.items():
@@ -70,10 +61,7 @@ def test_mul(input, output, expected_gradients):
 )
 def test_div(input, output, expected_gradients):
     values = create_values_dict(input)
-    if "b" in expected_gradients:
-        div = values["a"] / values["b"]
-    else:
-        div = values["a"] / input["b"]
+    div = values["a"] / values.get("b", input["b"])
     assert div.data == output
     div.backward()
     for var, expected_grad in expected_gradients.items():
@@ -81,96 +69,96 @@ def test_div(input, output, expected_gradients):
 
 
 @pytest.mark.parametrize(
-    "a, b, output, grad_a",
+    "a, b, output, expected_gradient",
     [
         (-3, 2, 9, -6),
         (4, 3, 64, 48),
     ],
 )
-def test_pow(a, b, output, grad_a):
+def test_pow(a, b, output, expected_gradient):
     a = Value(data=a, label="a")
     pow = a**b
     assert pow.data == output
     pow.backward()
-    a.grad == grad_a
+    a.grad == expected_gradient
 
 
 @pytest.mark.parametrize(
-    "input, output, grad",
+    "input, output, expected_gradient",
     [
         (2, 2, 1),
         (-2.0, 0, 0),
         (1.3, 1.3, 1),
     ],
 )
-def test_relu(input, output, grad):
+def test_relu(input, output, expected_gradient):
     a = Value(data=input, label="a")
     relu = a.relu()
     assert relu.data == output
     relu.backward()
-    assert a.grad == grad
+    assert a.grad == expected_gradient
 
 
 @pytest.mark.parametrize(
-    "input, output, grad",
+    "input, output, expected_gradient",
     [
         (2, 0.9640275800758169, 0.07065082485316443),
         (-2.0, -0.9640275800758168, 0.07065082485316465),
         (1.3, 0.8617231593133063, 0.25743319670309406),
     ],
 )
-def test_tanh(input, output, grad):
+def test_tanh(input, output, expected_gradient):
     a = Value(data=input, label="a")
     tanh = a.tanh()
     assert tanh.data == output
     tanh.backward()
-    assert a.grad == grad
+    assert a.grad == expected_gradient
 
 
 @pytest.mark.parametrize(
-    "input, output, grad",
+    "input, output, expected_gradient",
     [
         (2, 7.38905609893065, 7.38905609893065),
         (-2.0, 0.1353352832366127, 0.1353352832366127),
         (1.3, 3.6692966676192444, 3.6692966676192444),
     ],
 )
-def test_exp(input, output, grad):
+def test_exp(input, output, expected_gradient):
     a = Value(data=input, label="a")
     exp = a.exp()
     assert exp.data == output
     exp.backward()
-    assert a.grad == grad
+    assert a.grad == expected_gradient
 
 
 @pytest.mark.parametrize(
-    "input, output, grad",
+    "input, output, expected_gradient",
     [
         (3, -3, -1),
         (-2, 2, -1),
     ],
 )
-def test_neg(input, output, grad):
+def test_neg(input, output, expected_gradient):
     a = Value(data=input, label="a")
     z = -a
     assert z.data == output
     z.backward()
-    assert a.grad == grad
+    assert a.grad == expected_gradient
 
 
 @pytest.mark.parametrize(
-    "input, output, grad",
+    "input, output, expected_gradient",
     [
         (3, 6, 2),
         (-2, -4, 2),
     ],
 )
-def test_rmul(input, output, grad):
+def test_rmul(input, output, expected_gradient):
     a = Value(data=input, label="a")
     rmul = 2 * a
     assert rmul.data == output
     rmul.backward()
-    assert a.grad == grad
+    assert a.grad == expected_gradient
 
 
 @pytest.mark.parametrize(
