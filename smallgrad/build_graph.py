@@ -1,6 +1,6 @@
 import argparse
 
-from micrograd.neural_network import MLP
+from smallgrad.neural_network import MLP
 
 
 def main():

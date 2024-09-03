@@ -1,9 +1,8 @@
 import random
 
 import pytest
-
-from micrograd.backpropagation import Value
-from micrograd.neural_network import MLP, Layer, Neuron
+from smallgrad.backpropagation import Value
+from smallgrad.neural_network import MLP, Layer, Neuron
 
 
 @pytest.fixture(autouse=True)

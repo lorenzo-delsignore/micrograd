@@ -1,6 +1,6 @@
 import pytest
+from smallgrad.backpropagation import Value
 
-from micrograd.backpropagation import Value
 from tests.utils import create_values_dict
 
 
