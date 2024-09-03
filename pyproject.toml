@@ -1,7 +1,7 @@
 [project]
 name = "micrograd"
 version = "1.0.0"
-description = "Backprogation from scratch"
+description = "Backpropagation from scratch"
 keywords = []
 classifiers = [
 	"Development Status :: 5 - Production/Stable",
