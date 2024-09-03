@@ -1,7 +1,7 @@
 [project]
 name = "micrograd"
-version = "0.0.1"
-description = "Backprogation from scratch"
+version = "1.0.0"
+description = "Backpropagation from scratch"
 keywords = []
 classifiers = [
 	"Development Status :: 5 - Production/Stable",
@@ -24,7 +24,8 @@ author_email = "xelithras94@gmail.com"
 maintainer = "Lorenzo Del Signore"
 maintainer_email = "xelithras94@gmail.com"
 url = "https://github.com/lorenzo-delsignore/micrograd"
-long_description = "Backprogation from scratch"
+long_description = { file = "README.md" }
+long_description_content_type = "text/markdown"
 license = { file = "LICENSE" }
 
 [tool.setuptools.packages.find]
@@ -62,4 +63,3 @@ requires = [
 	"setuptools==69.5.1",
 	"wheel",
 ]
-
