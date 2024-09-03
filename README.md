@@ -13,6 +13,9 @@ git clone https://github.com/lorenzo-delsignore/micrograd.git
 cd micrograd
 pip install -e .
 ```
+To render the computational graph, you also need to install [Graphviz](https://www.graphviz.org/).
+
+If you want to install it with conda you can install it with the following command: ```conda install -c conda-forge pygraphviz```
 # Usage
 To use Micrograd, you can run the provided script to create an MLP and visualize the computational graph:
 ```
