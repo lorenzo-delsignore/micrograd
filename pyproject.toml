@@ -49,6 +49,11 @@ dev = [
 	"tox",
 ]
 
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+
 [tool.distutils.bdist_wheel]
 universal = true
 

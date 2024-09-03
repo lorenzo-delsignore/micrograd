@@ -44,11 +44,3 @@ class MLP:
         for layer in self.layers:
             x = layer(x)
         return x
-
-
-if __name__ == "__main__":
-    x = [2.0, 3.0, -1.0]
-    n = MLP(3, [2, 1])
-    output = n(x)
-    output.backward()
-    output.print_graph()
