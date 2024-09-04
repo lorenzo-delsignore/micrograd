@@ -21,7 +21,7 @@ To render the computational graph, you also need an external dependency [Graphvi
 
 If you want to install the dependency with conda you use the following command: ```conda install -c conda-forge pygraphviz```.
 
-You can install smallgrad also with Docker, in which contains also the external Graphviz dependecy:
+You can install smallgrad also with Docker, in which contains also the external Graphviz dependency:
 ```
 cd smallgrad
 docker -t smallgrad .
