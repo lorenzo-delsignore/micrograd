@@ -154,7 +154,6 @@ class Value:
             filename=filename, directory=directory, format=format, cleanup=True
         )
         print(f"Graph saved to: {output_path}")
-        dot.view()
 
     def __repr__(self):
         return f"Value {self.data}, label: {self.label}, grad: {self.grad}"
