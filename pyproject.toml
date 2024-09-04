@@ -1,6 +1,6 @@
 [project]
 name = "smallgrad"
-version = "1.0.1"
+version = "1.0.2"
 description = "Backpropagation from scratch"
 readme = "README.md"
 keywords = []
